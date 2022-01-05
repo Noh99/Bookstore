@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookstore.mappers.book">
+
+	<select id="books" resultType="com.bookstore.domain.BookVO">
+		select id, title, author, price
+		from tbl_book
+	</select>
+	
+	<insert id="new" parameterType="com.bookstore.domain.BookVO">
+		insert into tbl_book(title, author, price)
+		values(#{title}, #{author}, #{price})
+	</insert>
+	
+	<select id="book" parameterType="int" resultType="com.bookstore.domain.BookVO">
+		select id, title, author, price
+		from tbl_book
+		where id = #{id}		
+	</select>
+	
+	<update id="edit" parameterType="com.bookstore.domain.BookVO">
+		update tbl_book
+		set title = #{title}
+		  , author = #{author}
+		  , price = #{price}
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete 
+		from tbl_book
+		where id = #{id}
+	</delete>
+
+</mapper>
